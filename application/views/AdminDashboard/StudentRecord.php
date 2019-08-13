@@ -1,93 +1,77 @@
-<?php
-
-          if(!$this->session->userdata('admin_id'))
-          return redirect('Login');
-
-         ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Student Record</title>
-	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<h1>Student Record</h1>
-<a class="btn btn-info" href=<?= base_url('Admin'); ?>  >Go to Admin Dashboard</a>
 
-<center><?php if($msg = $this->session->flashdata('updatemsg')): ?>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="alert alert-dismissible alert-success">
-                        <?= $msg ?>
-                    </div>
-                </div>
-            </div>
-        <?php endif; ?></center>
+   <div align="left"><div class="container">
+	<a class="btn btn-info" href=<?= base_url('Admin');  ?>> Go to Admin Dashboard</a></div></div>
 
-        <center><?php if($msg = $this->session->flashdata('deletemsg')): ?>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="alert alert-dismissible alert-success">
-                        <?= $msg ?>
-                    </div>
-                </div>
-            </div>
-        <?php endif; ?></center>
+	<center><?php if($msg = $this->session->flashdata('msg')): ?>
+      <div class="row">
+      	<div class="col-lg-12">
+      		<div class="alert alert-dismissible alert-success">
+      			<?= $msg;  ?>
+      			
+      		</div>
+      		
+      	</div>
 
-<table class="table table-hover">
-	<th>sr.no</th>
-	<th>Student Name</th>
-	<th>Roll no</th>
-	<th>department</th>
-	<th>email</th>
-	<th>password</th>
-	<th>Edit</th>
-	<th>Delete</th>
+      </div>
 
-    <?php $count = 1; ?>
-	<?php foreach ($StudentRecord->result() as $student ) { ?>
-	
-	
-	<tr>
-		<td><?= $count++; ?></td>
-		<td><?= $student->name; ?></td>
-		<td><?= $student->rollno; ?></td>
-		<td><?= $student->department; ?></td>
-		<td><?= $student->email; ?></td>
-		<td><?= $student->password; ?></td>
-		<td>
-			<?php 
+  <?php endif; ?></center>
 
-				$d_data = array(                    
-                   'rollno' => $student->rollno
-                    );
+	<center><h1>Student Record</h1>
+		<br/><br/>
+		<div class="container">
 
-				echo form_open('Admin/editStudent');
+			<table class="table table-hover">
 
-				echo form_hidden($d_data);
-				echo form_submit(['name'=>'submit','value'=>'Edit','class'=>'btn btn-primary']); 
-				echo form_close();
-	?>
-		</td>
-		<td>
-			<?php 
+				<th>sr no.</th>
+				<th>Student Name</th>
+				<th>Roll no</th>
+				<th>Deapartment</th>
+				<th>Email</th>
+				<th>Password</th>
+				<th>Edit</th>
+				<th>Delete</th>
+				
+				<?php  $count = 1; ?>
+				<?php foreach ($studentRecord->result() as $student) { ?>
 
-				$d_data = array(                    
-                   'rollno' => $student->rollno
-                    );
+					<tr>
+						<td><?= $count++; ?></td>
+						<td><?= $student->name; ?></td>
+						<td><?= $student->rollno; ?></td>
+						<td><?= $student->department; ?></td>
+						<td><?= $student->email; ?></td>
+						<td><?= $student->password; ?></td>
+						<td>
+							<?php
 
-				echo form_open('Admin/deleteStudent');
+							$rollno = $student->rollno;
 
-				echo form_hidden($d_data);
-				echo form_submit(['name'=>'submit','value'=>'Delete','class'=>'btn btn-danger']); 
-				echo form_close();
-	        ?>
-	
+							?>
+							<a class="btn btn-primary" href=<?= base_url('Admin/editStudent?var1='.$rollno);  ?>> Edit</a></td>
+						<td>
+
+							<a class="btn btn-danger" href=<?= base_url('Admin/deleteStudent?var1='.$rollno);  ?>> Delete</a></td>
+					</tr>
+					
+			<?php	} ?>
+
+			</table>
+
+
 			
-		</td>
-	</tr>
 
-	<?php } ?>
-</table>
+
+
+		</div>
+
+
+</center>
 </body>
 </html>

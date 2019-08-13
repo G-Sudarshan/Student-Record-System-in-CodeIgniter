@@ -1,59 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Edit Student Information </title>
+	<title>Edit Student Information</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+	<div class="container" align="left">
+		
+		<a class="btn btn-info" href=<?= base_url('Admin/loadStudentRecord');  ?>> Back</a>
+	</div>
+
 	<center>
-<h3> Edit Student Record </h3>
+		
+		<h2>Edit Student Information</h2>
+		<div class="col-lg-6">
 
-<div class="col-lg-6">
-<?php 
+			<?php 
 
-echo form_open("Admin/updateStudentRecord");
+  echo form_open('Admin/updateStudent');
 
-echo "Student Name : ";
+  echo " roll no of student  &nbsp; : &nbsp;";
+  echo form_input(['name'=>'rollno','placeholder'=>'Roll no of student ','class'=>'form-control','value'=>set_value('rollno',$studentData->rollno)]);
+  echo "<br/><br/>";
 
-echo form_input(['name'=>'name','class'=>'form-control' ,'placeholder'=>'name','value'=>set_value('name',$studentData->name)]); 
-echo "<br/><br/>";
+  echo " name of student  &nbsp; : &nbsp;";
+  echo form_input(['name'=>'name','placeholder'=>'name of student ','class'=>'form-control','value'=>set_value('rollno',$studentData->name)]);
+  echo "<br/><br/>";
 
-echo "Student Roll no : ";
-echo form_input(['name'=>'rollno','class'=>'form-control' ,'placeholder'=>'name','value'=>set_value('rollno',$studentData->rollno)]); 
-echo "<br/><br/>";
+  echo "department of student  &nbsp; : &nbsp;";
+  echo form_input(['name'=>'department','placeholder'=>'department of student ','class'=>'form-control','value'=>set_value('rollno',$studentData->department)]);
+  echo "<br/><br/>";
 
-echo "Student Department : ";
-echo form_input(['name'=>'department','class'=>'form-control' ,'placeholder'=>'name','value'=>set_value('department',$studentData->department)]); 
-echo "<br/><br/>";
+  echo "email for student(It will be username of student)  &nbsp; : &nbsp;";
+  echo form_input(['type'=>'email','name'=>'email','placeholder'=>'email for student ','class'=>'form-control','value'=>set_value('rollno',$studentData->email)]);
+  echo "<br/><br/>";
 
-echo "Student email : ";
-
-echo form_input(['type' =>'email','name'=>'email','class'=>'form-control' ,'placeholder'=>'name','value'=>set_value('email',$studentData->email)]); 
-echo "<br/><br/>";
-
-echo "Student password : ";
-
-echo form_input(['name'=>'password','class'=>'form-control' ,'placeholder'=>'name','value'=>set_value('password',$studentData->password)]); 
-echo "<br/><br/>";
-//echo "<br/><br/>";
-
-$d_data = array(                    
-                   'id' => $studentData->id
-               );
-
-echo form_hidden($d_data);
-
-echo form_reset(['name'=>'reset','value'=>'Reset','class'=>'btn btn-default']);
-      
-echo form_submit(['name'=>'submit','value'=>'Submit','class'=>'btn btn-primary']);
-
-echo form_close();
+  echo "password for student  &nbsp; : &nbsp;";
+  echo form_input(['name'=>'password','placeholder'=>'password for student ','class'=>'form-control','value'=>set_value('rollno',$studentData->password)]);
+  echo "<br/><br/>";
 
 
-?>
+  echo form_hidden(['id'=>$studentData->id]);
 
-</div>
+  echo form_reset(['name'=>'reset','value'=>'Reset','class'=>'btn btn-default']); 
 
-</center>
+ echo form_submit(['name'=>'submit','value'=>'Update Student Information','class'=>'btn btn-primary']);
+
+ echo form_close();
+
+  ?>
+			
+
+
+		</div>
+
+
+	</center>
+
 </body>
 </html>

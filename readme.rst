@@ -1,5 +1,7 @@
-##YouTube Link ##
-for tutorilas in marathi for this code : https://youtu.be/SUmEH4ELXjY
+###################
+YouTube Link
+###################
+for tutorials in marathi for this code : https://youtu.be/SUmEH4ELXjY
 
 ###################
 What is CodeIgniter

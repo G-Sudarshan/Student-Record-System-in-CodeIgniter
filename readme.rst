@@ -3,6 +3,8 @@ YouTube Link
 ###################
 for tutorials in Marathi for this code : https://youtu.be/SUmEH4ELXjY
 
+srs.sql file is also uploaded you can import it to your database. 
+
 ###################
 What is CodeIgniter
 ###################
